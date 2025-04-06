@@ -11,7 +11,7 @@ pkg install python2 -y;
 
 pkg install git -y;
 
-git clone https://github.com/ThonyDroidYT/TD-CCGen
+git clone https://github.com/kotal0130/TD-CCGen
 
 Run Script
 
