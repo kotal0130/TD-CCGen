@@ -41,6 +41,3 @@ python2 TD-CCGen.py
 
 python2 TD-CCGen.py -b 483039xxxxxxxxxx -u 20 -d -c
 
-Knowledge is Free. Never Stop Learning
-
-# Copyright @Thony_DroidYT 2020
