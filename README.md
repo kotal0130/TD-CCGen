@@ -1,10 +1,9 @@
 # CCGen
 TDCCGen Free Credit Card Generator Termux
 
+# Commands to Use
 
-# Comandos A Usar
-
-# Instalar Archivos y Scrip
+# Install Files and Script
 
 apt update && apt upgrade -y;
 
@@ -14,7 +13,7 @@ pkg install git -y;
 
 git clone https://github.com/ThonyDroidYT/TD-CCGen
 
-Ejecutar Scrip
+Run Script
 
 cd
 
@@ -26,11 +25,11 @@ ls
 
 python2 TD-CCGen.py
 
-# Generar Tarjetas 
+# Generate Cards
 
 python2 TD-CCGen.py -b 483039xxxxxxxxxx -u 20 -d -c
 
-Nota: si ya instalastes todo puedes usar los siguientes atajos
+Note: if you have already installed everything, you can use the following shortcuts
 
 cd
 
@@ -42,6 +41,3 @@ python2 TD-CCGen.py
 
 python2 TD-CCGen.py -b 483039xxxxxxxxxx -u 20 -d -c
 
-El Conocimiento es Libre. Nunca Dejes de Aprender
-
-# Copyright @Thony_DroidYT 2020
