@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: iso-8859-1 -*-
+# -*- coding: iso-8859-1 -*-
 import getopt
 import time
 import os
@@ -8,17 +8,17 @@ import datetime
 from random import randint
 
 version = "1.0.0"
-#Mensaje
-os.system ("clear")
-real =raw_input("\033[1;33mingresa tu nick de binnero: \033[0m")
+# Message
+os.system("clear")
+real = raw_input("\033[1;33mEnter your nickname: \033[0m")
 print("")
-print "\033[1;31mHola \033[0m" + real + "\033[1;35m encantado de conocerte :)\033[0m"
+print "\033[1;31mHello \033[0m" + real + "\033[1;35m nice to meet you :)\033[0m"
 time.sleep(3)
 print("")
-print("\033[1;32mACCESO CONCEDIDO!!\033[1;32m")
+print("\033[1;32mACCESS GRANTED!!\033[1;32m")
 time.sleep(2)
 print("")
-#Informacion de ayuda
+# Help Information
 def usage():
     print("TD-CCGen.py version:{}".format(version))
     print("")
@@ -27,49 +27,38 @@ def usage():
     print("               +------------------------------+")
     print("")
     print("+---------------+")
-    print("+\033[1;32m Metodo de uso\033[1;31m +")
+    print("+\033[1;32m Usage Method\033[1;31m +")
     print("+---------------+")
     print("")
-    print("\033[1;36m     python2 TD-CCGen.py -b     [Opciones de uso]")
-    print("     python2 TD-CCGen.py -h     Mensaje de ayuda")
+    print("\033[1;36m     python2 TD-CCGen.py -b     [Usage Options]")
+    print("     python2 TD-CCGen.py -h     Help Message")
     print("\033[1;31m")
     print("+-----------------+")
-    print("+\033[;32m Opciones de uso\033[1;31m +")
+    print("+\033[;32m Usage Options\033[1;31m +")
     print("+-----------------+")
     print("")
-    print("\033[1;36m     -b, -bin          Formato de bin")
-    print("     -u, -cantidad     Cantidad de tarjetas a generar")
-    print("     -d, -date         Genera fechas al azar")
-    print("     -c, -ccv          Genera ccv al azar")
-    print("     -g, -guardar      Guarda las tarjetas en un archivo")
+    print("\033[1;36m     -b, -bin          Bin format")
+    print("     -u, -quantity     Number of cards to generate")
+    print("     -d, -date         Generate random dates")
+    print("     -c, -ccv          Generate random ccv")
+    print("     -g, -save         Save the cards to a file")
     print("\033[1;31m")
     print("+----------------+")
-    print("+\033[;32m Ejemplo de uso\033[1;31m +")
+    print("+\033[;32m Usage Example\033[1;31m +")
     print("+----------------+")
     print("")
-    print("\033[1;33m     CANTIDAD 20\033[0m")
+    print("\033[1;33m     QUANTITY 20\033[0m")
     print("")
     print("\033[1;36m     python2 TD-CCGen.py -b 483039xxxxxxxxxx -u 20 -d -c ")
     print("")
     print("\033[1;31m")
     print("+---------------+")
-    print("+\033[;32m Editado por TD\033[1;31m +")
+    print("+\033[;32m Edited by TD\033[1;31m +")
     print("+---------------+\033[0m")
     print("")
-    print("\033[1;33m NickName: THONY DROID\033[0m")
-    print("\033[1;33m Youtube: THONY. DROID 2.0\033[0m")
-    print("\033[1;33m Telegram: t.me/Thony_DroidYTB\033[0m")
-    print("\033[1;33m Facebook: ThonyDroidYt")
-    print("\033[1;33m Sitio Web: Bit.ly/thonyblog")
-    print("")
-    print("\033[1;31m")
-    print("+---------------+")
-    print("+\033[;32m   Thanks to  \033[1;31m +")
-    print("+---------------+\033[0m")
-    print("")
-    print("\033[1;33m  RealStrategy")
-    print("")
-#Arg parser
+   
+
+# Argument Parser
 def parseOptions(argv):
     bin_format = ""
     saveopt = False
@@ -79,29 +68,29 @@ def parseOptions(argv):
     check = False
 
     try:
-        opts, args = getopt.getopt(argv, "h:b:u:gcd",["help", "bin", "guardar", "cantidad", "date", "cvv"])
+        opts, args = getopt.getopt(argv, "h:b:u:gcd", ["help", "bin", "save", "quantity", "date", "cvv"])
         for opt, arg in opts:
             if opt in ("-h"):
                 usage()
                 sys.exit()
             elif opt in ("-b", "-bin"):
                 bin_format = arg
-            elif opt in ("-g", "-guardar"):
+            elif opt in ("-g", "-save"):
                 saveopt = True
-            elif opt in ("-u", "-cantidad"):
-               limit = arg
+            elif opt in ("-u", "-quantity"):
+                limit = arg
             elif opt in ("-d", "-date"):
                 date = True
             elif opt in ("-c", "-ccv"):
                 ccv = True
-                
-        return(bin_format, saveopt, limit, ccv, date)
+
+        return (bin_format, saveopt, limit, ccv, date)
 
     except getopt.GetoptError:
         usage()
         sys.exit(2)
 
-#CHECKER BASADO EN ALGORITMO LUHN
+# LUHN Algorithm Based Checker
 def cardLuhnChecksumIsValid(card_number):
     """ checks to make sure that the card passes a luhn mod-10 checksum """
 
@@ -121,24 +110,24 @@ def cardLuhnChecksumIsValid(card_number):
 
     return ( (sum % 10) == 0 )
 
-#GENERA UNA BASE DE BIN XXXXXXXXXXXXXXXX
+# GENERATE A BIN BASE XXXXXXXXXXXXXXXX
 def ccgen(bin_format):
     out_cc = ""
     if len(bin_format) == 16:
-        #Iteration over the bin
+        # Iteration over the bin
         for i in range(15):
             if bin_format[i] in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"):
                 out_cc = out_cc + bin_format[i]
                 continue
             elif bin_format[i] in ("x"):
-                out_cc = out_cc + str(randint(0,9))
+                out_cc = out_cc + str(randint(0, 9))
             else:
-                print("\nCaracter no valido en el formato: {}\n".format(bin_format))
-                print("El formato del bin es: xxxxxxxxxxxxxxxx de 16 digitos\n")
-                print("Ayuda: python2 TD-CCGen.py -h \n")
+                print("\nInvalid character in the format: {}\n".format(bin_format))
+                print("The bin format is: xxxxxxxxxxxxxxxx of 16 digits\n")
+                print("Help: python2 TD-CCGen.py -h \n")
                 sys.exit()
 
-        #Generate checksum (last digit) -- IMPLICIT CHECK
+        # Generate checksum (last digit) -- IMPLICIT CHECK
         for i in range(10):
             checksum_check = out_cc
             checksum_check = checksum_check + str(i)
@@ -151,14 +140,14 @@ def ccgen(bin_format):
 
     else:
         print("\033[1;32m")
-        print("\nERROR: Inserta un bin valido\n")
-        print("SOLUCION: El formato del bin es: 483039xxxxxxxxxx de 16 digitos\n")
-        print("AYUDA: python2 TD-CCGen.py -h\n")
+        print("\nERROR: Insert a valid bin\n")
+        print("SOLUTION: The bin format is: 483039xxxxxxxxxx of 16 digits\n")
+        print("HELP: python2 TD-CCGen.py -h\n")
         sys.exit()
 
-    return(out_cc)
+    return (out_cc)
 
-#Write on a file that takes a list for the argument
+# Write on a file that takes a list for the argument
 def save(generated):
     now = datetime.datetime.now()
     file_name = "cc-gen_output_{0}.txt".format(str(now.day) + str(now.hour) + str(now.minute) + str(now.second))
@@ -167,7 +156,7 @@ def save(generated):
         f.write(line + "\n")
     f.close
 
-#Random exp date
+# Random exp date
 def dategen():
     now = datetime.datetime.now()
     date = ""
@@ -178,22 +167,22 @@ def dategen():
 
     return date
 
-#Random ccv gen
+# Random ccv gen
 def ccvgen():
     ccv = ""
-    num = randint(10,999)
+    num = randint(10, 999)
 
     if num < 100:
         ccv = "0" + str(num)
     else:
         ccv = str(num)
 
-    return(ccv)
+    return (ccv)
 
-#The main function
+# The main function
 def main(argv):
     bin_list = []
-    #get arg data
+    # get arg data
     (bin_format, saveopt, limit, date, ccv) = parseOptions(argv)
     if bin_format is not "":
         for i in range(int(limit)):
@@ -211,10 +200,10 @@ def main(argv):
                 print(bin_list[i])
 
         if not bin_list:
-            print("\nERROR: el bin que insertaste no es valido\n")
+            print("\nERROR: the bin you inserted is not valid\n")
         else:
-            print("\n Todas las tarjetas fueron validadas(check)")
-            print("\n Pueden ser usadas satisfactoriamente")
+            print("\n All cards have been validated (check)")
+            print("\n They can be used successfully")
 
         if saveopt:
             save(bin_list)
